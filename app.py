@@ -4,7 +4,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Interactive Crime Map",
+st.set_page_config(page_title="Interactive Reports Map",
                    page_icon=":bar_chart:",
                    layout='wide'
                    
@@ -12,7 +12,6 @@ st.set_page_config(page_title="Interactive Crime Map",
 
 Reports = pd.read_csv('Police_Department_Incident_Reports__2018_to_Present.csv')
                       #, encoding='latin1')
-Reports.fillna(0, inplace=True)
 
 # Define the number of rows to display per page
 rows_per_page = 1000
@@ -69,7 +68,7 @@ selected_year = st.selectbox('Select a year', available_years)
 # Filter the data based on the selected year
 filtered_data = Reports[Reports['Incident Year'] == selected_year]
 
-fig2 = px.scatter_mapbox(filtered_data, lat="Latitude", lon="Longitude", zoom=15, hover_data=["Incident Subcategory","Incident Description", "Incident Date"])
+fig2 = px.scatter_mapbox(filtered_data, lat="Latitude", lon="Longitude", zoom=15, hover_data=["Incident Subcategory", "Incident Description", "Incident Date"])
 fig2.update_layout(mapbox_style="stamen-terrain")
 fig2.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 fig2.update_layout(title='Crime Map',
