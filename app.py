@@ -12,6 +12,7 @@ st.set_page_config(page_title="Interactive Crime Map",
 
 Reports = pd.read_csv('Police_Department_Incident_Reports__2018_to_Present.csv')
                       #, encoding='latin1')
+Reports.fillna(0, inplace=True)
 
 # Define the number of rows to display per page
 rows_per_page = 1000
