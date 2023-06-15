@@ -60,13 +60,13 @@ st.title(":earth_americas: Reports Map")
 st.markdown("##")
 
 # Get the available years
-available_years = Reports['Incident Date'].dt.year.dropna().unique()
+available_years = Reports['Incident Year'].unique()
 
 # Select a specific year
 selected_year = st.selectbox('Select a year', available_years)
 
 # Filter the data based on the selected year
-filtered_data = Reports.loc[Reports['Incident Date'].dt.year == selected_year]
+filtered_data = Reports[Reports['Incident Year'] == selected_year]
 
 fig2 = px.scatter_mapbox(filtered_data, lat="Latitude", lon="Longitude", zoom=15, hover_data=["Incident Subcategory", "Incident Description", "Incident Date"])
 fig2.update_layout(mapbox_style="stamen-terrain")
